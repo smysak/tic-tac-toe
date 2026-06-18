@@ -6,10 +6,10 @@ class GameBoard
   attr_reader :top, :mid, :bot
 
   def initialize
-    @grid_values = [*1..9]
-    @top = " #{@grid_values[0]} | #{@grid_values[1]} | #{@grid_values[2]} "
-    @mid = " #{@grid_values[3]} | #{@grid_values[4]} | #{@grid_values[5]} "
-    @bot = " #{@grid_values[6]} | #{@grid_values[7]} | #{@grid_values[8]} "
+    @grid_values = [nil, *1..9]
+    @top = " #{@grid_values[1]} | #{@grid_values[2]} | #{@grid_values[3]} "
+    @mid = " #{@grid_values[4]} | #{@grid_values[5]} | #{@grid_values[6]} "
+    @bot = " #{@grid_values[7]} | #{@grid_values[8]} | #{@grid_values[9]} "
   end
 end
 
