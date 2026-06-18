@@ -2,12 +2,22 @@
 
 # Human players can play with numeric choices on a GameBoard.
 class GameBoard
-  attr_accessor :top, :mid, :bot
+  attr_accessor :g1, :g2, :g3, :g4, :g5, :g6, :g7, :g8, :g9
+  attr_reader :top, :mid, :bot
 
   def initialize
-    @top = " 1 | 2 | 3 "
-    @mid = " 4 | 5 | 6 "
-    @bot = " 7 | 8 | 9 "
+    @g1 = "1"
+    @g2 = "2"
+    @g3 = "3"
+    @g4 = "4"
+    @g5 = "5"
+    @g6 = "6"
+    @g7 = "7"
+    @g8 = "8"
+    @g9 = "9"
+    @top = " #{@g1} | #{@g2} | #{@g3} "
+    @mid = " #{@g4} | #{@g5} | #{@g6} "
+    @bot = " #{@g7} | #{@g8} | #{@g9} "
   end
 end
 
