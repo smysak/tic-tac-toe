@@ -2,15 +2,24 @@
 
 # Human players can play with numeric choices on a GameBoard.
 class GameBoard
-  attr_accessor :grid_values
-  attr_reader :top, :mid, :bot
+  attr_accessor :grid_values, :top, :mid, :bot
 
   def initialize
     @grid_values = [nil, *1..9]
-    # change top, mid, bot to class methods
+  end
+
+  def write_grid_values
     @top = " #{@grid_values[1]} | #{@grid_values[2]} | #{@grid_values[3]} "
     @mid = " #{@grid_values[4]} | #{@grid_values[5]} | #{@grid_values[6]} "
     @bot = " #{@grid_values[7]} | #{@grid_values[8]} | #{@grid_values[9]} "
+  end
+
+  def display_grid
+    puts "#{top}\n-----------\n#{mid}\n-----------\n#{bot}"
+  end
+
+  def switch_player
+    @grid_values[0] = @grid_values[0] == 'X' ? 'O' : 'X'
   end
 end
 
@@ -21,11 +30,10 @@ def choose(game)
     input = gets.chomp
     if input.match?(/^[1-9]$/)
       index = input.to_i
-      if game.grid_values[index].is_a?(Integer)
-        return index
-      else
-        puts "That space is already taken by #{game.grid_values[index]}.\nTry again."
-      end
+      return index if game.grid_values[index].is_a?(Integer)
+
+      puts "That space is already taken by #{game.grid_values[index]}.\nTry again."
+
     else
       puts "I have no idea where #{input} is.\nTry again."
     end
@@ -34,11 +42,12 @@ end
 
 def play_game
   game = GameBoard.new
-  # 9 times loop?
-  puts "#{game.top}\n-----------\n#{game.mid}\n-----------\n#{game.bot}"
-  # implement player switch
-  game.grid_values[0] = "X"
-  game.grid_values[choose(game)] = game.grid_values[0]
+  9.times do
+    game.write_grid_values
+    game.display_grid
+    game.switch_player
+    game.grid_values[choose(game)] = game.grid_values[0]
+  end
 end
 
 play_game
