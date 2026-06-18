@@ -4,6 +4,8 @@
 class GameBoard
   attr_accessor :grid_values, :top, :mid, :bot
 
+  WIN_CONDITIONS = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+
   def initialize
     @grid_values = [nil, *1..9]
   end
@@ -20,6 +22,13 @@ class GameBoard
 
   def switch_player
     @grid_values[0] = @grid_values[0] == 'X' ? 'O' : 'X'
+  end
+
+  def win?
+    WIN_CONDITIONS.any? do |condition|
+      board_values = condition.map { |index| @grid_values[index] }
+      board_values.uniq == [@grid_values[0]]
+    end
   end
 end
 
@@ -47,10 +56,14 @@ def play_game
     game.display_grid
     game.switch_player
     game.grid_values[choose(game)] = game.grid_values[0]
+    if game.win?
+      puts "\n#{game.grid_values[0]} has won the game!"
+      break
+    end
   end
   game.write_grid_values
   game.display_grid
-  puts "\nWas there a winner?\n "
+  puts "\nWould you like to play again?\n "
 end
 
 play_game
