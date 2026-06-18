@@ -9,9 +9,9 @@ class GameBoard
   end
 
   def write_grid_values
-    @top = " #{@grid_values[1]} | #{@grid_values[2]} | #{@grid_values[3]} "
-    @mid = " #{@grid_values[4]} | #{@grid_values[5]} | #{@grid_values[6]} "
-    @bot = " #{@grid_values[7]} | #{@grid_values[8]} | #{@grid_values[9]} "
+    @top = "\n #{@grid_values[1]} | #{@grid_values[2]} | #{@grid_values[3]} "
+    @mid =   " #{@grid_values[4]} | #{@grid_values[5]} | #{@grid_values[6]} "
+    @bot =   " #{@grid_values[7]} | #{@grid_values[8]} | #{@grid_values[9]} "
   end
 
   def display_grid
@@ -25,17 +25,17 @@ end
 
 # Cut this down with other methods
 def choose(game)
-  puts "Choose where #{game.grid_values[0]} will play next."
+  puts "\nChoose where #{game.grid_values[0]} will play next.\n "
   loop do
     input = gets.chomp
     if input.match?(/^[1-9]$/)
       index = input.to_i
       return index if game.grid_values[index].is_a?(Integer)
 
-      puts "That space is already taken by #{game.grid_values[index]}.\nTry again."
+      puts "That space is already taken by #{game.grid_values[index]}.\nTry again.\n "
 
     else
-      puts "I have no idea where #{input} is.\nTry again."
+      puts "I have no idea where #{input} is.\nTry again.\n "
     end
   end
 end
@@ -50,7 +50,7 @@ def play_game
   end
   game.write_grid_values
   game.display_grid
-  puts 'Was there a winner?'
+  puts "\nWas there a winner?\n "
 end
 
 play_game
