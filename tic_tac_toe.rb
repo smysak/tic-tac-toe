@@ -48,6 +48,9 @@ def play_game
     game.switch_player
     game.grid_values[choose(game)] = game.grid_values[0]
   end
+  game.write_grid_values
+  game.display_grid
+  puts 'Was there a winner?'
 end
 
 play_game
